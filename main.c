@@ -47,6 +47,12 @@ void checkmap(teststr *data, int fd)
 
 }
 
+int ft_close(teststr *data)
+{
+	mlx_destroy_window(data->fenetre, data->new_fenetre);
+	exit(0);
+}
+
 void savemap(teststr *data, int fd)
 {
 	int i;
@@ -221,6 +227,7 @@ int	main(void)
 	grassflood(&data, fd); 
 	mlx_put_image_to_window(data.fenetre, data.new_fenetre, data.image, data.x, data.y); //DONT WORK
 	mlx_key_hook(data.new_fenetre, on_keypress, &data);
+	mlx_hook(data.new_fenetre,17,  1L < 17, ft_close, &data);
 	mlx_loop(data.fenetre);
 	close(fd);
 }
