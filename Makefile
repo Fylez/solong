@@ -1,4 +1,4 @@
-OBJ = main.c include/get_next_line.c include/get_next_line_utils.c 
+OBJ = main.c mapinit.c include/get_next_line.c include/get_next_line_utils.c 
 CC = gcc
 NAME = so_long
 %.o: %.c
