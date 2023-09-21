@@ -17,13 +17,13 @@
 # include <unistd.h>
 # include <stdio.h>
 #include <fcntl.h>
+#include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif
 
 char	*get_next_line(int fd);
-int		ft_strlen(char *str);
 int		ft_nlcheck(char *staticstr);
 void	*eof(char **staticstr);
 #endif

@@ -1,47 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 20:26:10 by fylez             #+#    #+#             */
-/*   Updated: 2023/07/26 15:54:54 by lzaengel         ###   ########.fr       */
+/*   Created: 2023/05/08 09:56:03 by lzaengel          #+#    #+#             */
+/*   Updated: 2023/05/08 10:40:38 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include"libft.h"
 
-/*check if there a new line in the static*/
-int	ft_nlcheck(char *staticstr)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (staticstr[i])
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < size -1 && src[i])
 	{
-		if (staticstr[i] == '\n')
-			return (1);
+		dst[i] = src[i];
 		i++;
-	}
-	return (0);
+	}	
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
 
-/*a simple strlen*/
-int	ft_strlen(char *str)
+/*
+int	main(void)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	char	dest[10] = "test";
+	char	src[] = "012345678901234567890123456789";
+	ft_strlcpy (dest, src, 10);
+	write(1, &dest, 15);
 }
-
-/*things to execute when you hit the end of file*/
-void	*eof(char **staticstr)
-{
-	free(*staticstr);
-	*staticstr = 0;
-	return (NULL);
-}
+*/

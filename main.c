@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/09/20 15:26:47 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/21 16:22:13 by fylez            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int load(teststr *data)
 
 int	main(void)
 {
-	
 	teststr	data;
 	int		fd;
 
@@ -104,12 +103,12 @@ int	main(void)
 	close(fd);
 	fd = open("map/test.ber", O_RDWR);
 	data.fenetre = mlx_init();
-	data.new_fenetre = mlx_new_window(data.fenetre, (data.len - 1) * TILE, data.hei * TILE, "test");
+	data.new_fenetre = mlx_new_window(FN, (data.len - 1) * TILE, data.hei * TILE, "test");
 	load(&data);
 	grassflood(&data, fd);
-	mlx_put_image_to_window(data.fenetre, data.new_fenetre, data.image, data.x, data.y);
+	mlx_put_image_to_window(FN, data.new_fenetre, data.image, data.x, data.y);
 	mlx_key_hook(data.new_fenetre, on_keypress, &data);
 	mlx_hook(data.new_fenetre, 17, 1L < 17, ft_close, &data);
-	mlx_loop(data.fenetre);
+	mlx_loop(data.fenetre); 
 	close(fd);
 }

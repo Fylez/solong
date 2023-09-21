@@ -3,7 +3,7 @@
 
 
 # include <stdio.h>
-# include "include/get_next_line.h"
+# include "include/libftfin/libft.h"
 # include <mlx.h>
 
 # define TILE 32
