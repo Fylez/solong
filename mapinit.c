@@ -6,13 +6,13 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/09/20 15:27:19 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/22 21:05:53 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	checkmap(teststr *data, int fd)
+void	checkmap(t_datastr *data, int fd)
 {
 	char	*line;
 
@@ -23,11 +23,11 @@ void	checkmap(teststr *data, int fd)
 	data->len = ft_strlen(line);
 	while (line)
 	{
-		printf("%s\n", line);
+		ft_printf("%s\n", line);
 		data->hei = data->hei + 1;
 		if (ft_strlen(line) != data->len)
 		{
-			printf("%s\n", "invalid map");
+			ft_printf("%s\n", "invalid map");
 			exit(0);
 		}
 		free(line);
@@ -35,7 +35,7 @@ void	checkmap(teststr *data, int fd)
 	}
 }
 
-void	savemap(teststr *data, int fd)
+void	savemap(t_datastr *data, int fd)
 {
 	int		i;
 	int		j;
@@ -46,13 +46,13 @@ void	savemap(teststr *data, int fd)
 	data -> map = malloc(data->hei * (sizeof(char *) + 1));
 	if (!data->map)
 		return ;
-	while (i < MAP_HEIGHT)
+	while (i < data->hei)
 	{
 		data -> map[i] = malloc(data -> len * sizeof(char));
 		if (!data->map[i])
 			return ;
 		line = get_next_line(fd);
-		while (j < MAP_WIDTH)
+		while (j < data->len)
 		{
 			data->map[i][j] = line[j];
 			j++;
@@ -64,15 +64,18 @@ void	savemap(teststr *data, int fd)
 	data->map[i] = '\0';
 }
 
-void	tileread(teststr *data, char c, int j, int i)
+void	tileread(t_datastr *data, char c, int j, int i)
 {
 	if (c == '1')
-		mlx_put_image_to_window(FENETRE, data->wall, XY);
+		mlx_put_image_to_window(data->fenetre,
+			data->new_fenetre, data->wall, (j * TILE), (i * TILE));
 	if (c == '0')
-		mlx_put_image_to_window(FENETRE, data->rien, XY);
+		mlx_put_image_to_window(data->fenetre,
+			data->new_fenetre, data->rien, (j * TILE), (i * TILE));
 	if (c == 'C')
 	{
-		mlx_put_image_to_window(FENETRE, data->collectible, XY);
+		mlx_put_image_to_window(data->fenetre,
+			data->new_fenetre, data->collectible, (j * TILE), (i * TILE));
 		data->col++;
 	}
 	if (c == 'P')
@@ -81,10 +84,11 @@ void	tileread(teststr *data, char c, int j, int i)
 		data->y = i * TILE;
 	}
 	if (c == 'E')
-		mlx_put_image_to_window(FENETRE, data->end, XY);
+		mlx_put_image_to_window(data->fenetre,
+			data->new_fenetre, data->end, (j * TILE), (i * TILE));
 }
 
-void	grassflood(teststr *data, int fd)
+void	grassflood(t_datastr *data, int fd)
 {
 	int		i;
 	int		j;
@@ -92,10 +96,10 @@ void	grassflood(teststr *data, int fd)
 
 	i = 0;
 	j = 0;
-	while (i < MAP_HEIGHT)
+	while (i < data->hei)
 	{
 		line = get_next_line(fd);
-		while (j < MAP_WIDTH)
+		while (j < data->len)
 		{
 			tileread(data, line[j], j, i);
 			j++;
