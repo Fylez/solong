@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:49:04 by liam              #+#    #+#             */
-/*   Updated: 2023/09/22 21:03:23 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/23 14:15:59 by fylez            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ typedef struct data
 	char	**map;
 	int		col;
 	int		mov;
+	int		fd;
 }	t_datastr;
 
-void	checkmap(t_datastr *data, int fd);
-void	savemap(t_datastr *data, int fd);
-void	grassflood(t_datastr *data, int fd);
+void	checkmap(t_datastr *data);
+void	savemap(t_datastr *data);
+void	grassflood(t_datastr *data);
 void	casecheck(t_datastr *data, int i, int j);
 void	move(t_datastr *data, int rx, int ry);
 int		on_keypress(int pressedkey, t_datastr *data);
 int		ft_close(t_datastr *data);
+void	start(t_datastr *data);
+
 
 #endif

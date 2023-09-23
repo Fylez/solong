@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   mapinit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/09/22 21:05:53 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/23 15:39:19 by fylez            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	checkmap(t_datastr *data, int fd)
+void	checkmap(t_datastr *data)
 {
 	char	*line;
-
+	
+	data->fd = open("map/test.ber", O_RDWR);
 	data -> hei = 0;
-	line = get_next_line(fd);
+	line = get_next_line(data->fd);
 	if (!line)
 		exit(0);
 	data->len = ft_strlen(line);
@@ -31,16 +32,18 @@ void	checkmap(t_datastr *data, int fd)
 			exit(0);
 		}
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 	}
+	close(data->fd);
 }
 
-void	savemap(t_datastr *data, int fd)
+void	savemap(t_datastr *data)
 {
 	int		i;
 	int		j;
 	char	*line;
 
+	data->fd = open("map/test.ber", O_RDWR);
 	i = 0;
 	j = 0;
 	data -> map = malloc(data->hei * (sizeof(char *) + 1));
@@ -51,17 +54,20 @@ void	savemap(t_datastr *data, int fd)
 		data -> map[i] = malloc(data -> len * sizeof(char));
 		if (!data->map[i])
 			return ;
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		while (j < data->len)
 		{
-			data->map[i][j] = line[j];
+			data->map[i][j] =  line[j];
 			j++;
 		}
+		ft_printf("%s\n", line);
 		free(line);
-		i++;
 		j = 0;
+		i++;
+		//j = (i++, 0);
 	}
 	data->map[i] = '\0';
+	close(data->fd);
 }
 
 void	tileread(t_datastr *data, char c, int j, int i)
@@ -88,17 +94,18 @@ void	tileread(t_datastr *data, char c, int j, int i)
 			data->new_fenetre, data->end, (j * TILE), (i * TILE));
 }
 
-void	grassflood(t_datastr *data, int fd)
+void	grassflood(t_datastr *data)
 {
 	int		i;
 	int		j;
 	char	*line;
 
+	data->fd = open("map/test.ber", O_RDWR);
 	i = 0;
 	j = 0;
 	while (i < data->hei)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		while (j < data->len)
 		{
 			tileread(data, line[j], j, i);
@@ -108,4 +115,5 @@ void	grassflood(t_datastr *data, int fd)
 		i++;
 		j = 0;
 	}
+	close(data->fd);
 }
