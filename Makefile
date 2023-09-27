@@ -1,4 +1,4 @@
-SRC = main.c mapinit.c movement.c
+SRC = main.c mapinit.c movement.c map_check.c
 
 LIBFTDIR = include/libftfin/
 

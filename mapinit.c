@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapinit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
+/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/09/23 15:39:19 by fylez            ###   ########.fr       */
+/*   Updated: 2023/09/27 12:52:41 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	checkmap(t_datastr *data)
 {
 	char	*line;
-	
+
 	data->fd = open("map/test.ber", O_RDWR);
 	data -> hei = 0;
 	line = get_next_line(data->fd);
@@ -24,13 +24,9 @@ void	checkmap(t_datastr *data)
 	data->len = ft_strlen(line);
 	while (line)
 	{
-		ft_printf("%s\n", line);
 		data->hei = data->hei + 1;
 		if (ft_strlen(line) != data->len)
-		{
-			ft_printf("%s\n", "invalid map");
-			exit(0);
-		}
+			ft_close(data, "INVALID MAP");
 		free(line);
 		line = get_next_line(data->fd);
 	}
@@ -60,7 +56,6 @@ void	savemap(t_datastr *data)
 			data->map[i][j] =  line[j];
 			j++;
 		}
-		ft_printf("%s\n", line);
 		free(line);
 		j = 0;
 		i++;

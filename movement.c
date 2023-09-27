@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
+/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:59:51 by liam              #+#    #+#             */
-/*   Updated: 2023/09/23 14:15:46 by fylez            ###   ########.fr       */
+/*   Updated: 2023/09/27 12:54:19 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	on_keypress(int pressedkey, t_datastr *data)
 	if (pressedkey == 'r')
 		start(data);
 	if (pressedkey == 65307)
-		ft_close(data);
+		ft_close(data, "ESCAPE KEY PRESSED");
 	if (pressedkey == 'w')
 		move(data, 0, -1);
 	if (pressedkey == 's')

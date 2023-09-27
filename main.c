@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
+/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/09/23 15:30:06 by fylez            ###   ########.fr       */
+/*   Updated: 2023/09/27 12:54:42 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_close(t_datastr *data)
+int	ft_close(t_datastr *data, char *reason)
 {
+	ft_printf("%s\n", reason);
 	mlx_destroy_window(data->fenetre, data->new_fenetre);
 	exit(0);
 }
@@ -41,10 +42,19 @@ void	start(t_datastr *data)
 	data->x = 0;
 	data->y = 0;
 	data->mov = 0;
+	data->ccol = 0;
 	checkmap(data);
 	savemap(data);
+	savecolormap(data);
 	load(data);
 	grassflood(data);
+	
+	if(pathcheck(data, data->y / TILE, data->x / TILE) == 0 || data->ccol != data->col)
+	{
+		ft_close(data, "NO VALID PATH");
+	}
+	else
+		ft_printf("yippy\n");
 	mlx_put_image_to_window(data->fenetre,
 		data->new_fenetre, data->image, data->x, data->y);
 }
