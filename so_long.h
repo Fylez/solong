@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:49:04 by liam              #+#    #+#             */
-/*   Updated: 2023/09/27 12:53:54 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:53:17 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ typedef struct data
 }	t_datastr;
 
 void	checkmap(t_datastr *data);
-void	savemap(t_datastr *data);
+void	savemap(t_datastr *data, int i, int j);
 void	grassflood(t_datastr *data);
 void	casecheck(t_datastr *data, int i, int j);
 void	move(t_datastr *data, int rx, int ry);
 int		on_keypress(int pressedkey, t_datastr *data);
 int		ft_close(t_datastr *data, char *reason);
 void	start(t_datastr *data);
-void	savecolormap(t_datastr *data);
+void	savecolormap(t_datastr *data, int i, int j);
 int		pathcheck(t_datastr *data, int j, int i);
 void	printmap(char **map);
 

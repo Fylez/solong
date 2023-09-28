@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/09/27 12:52:41 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:54:19 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,21 @@ void	checkmap(t_datastr *data)
 	{
 		data->hei = data->hei + 1;
 		if (ft_strlen(line) != data->len)
-			ft_close(data, "INVALID MAP");
+		{
+			free(line);
+			exit(0);
+		}
 		free(line);
 		line = get_next_line(data->fd);
 	}
 	close(data->fd);
 }
 
-void	savemap(t_datastr *data)
+void	savemap(t_datastr *data, int i, int j)
 {
-	int		i;
-	int		j;
 	char	*line;
 
 	data->fd = open("map/test.ber", O_RDWR);
-	i = 0;
-	j = 0;
 	data -> map = malloc(data->hei * (sizeof(char *) + 1));
 	if (!data->map)
 		return ;
@@ -53,13 +52,12 @@ void	savemap(t_datastr *data)
 		line = get_next_line(data->fd);
 		while (j < data->len)
 		{
-			data->map[i][j] =  line[j];
+			data->map[i][j] = line[j];
 			j++;
 		}
 		free(line);
 		j = 0;
 		i++;
-		//j = (i++, 0);
 	}
 	data->map[i] = '\0';
 	close(data->fd);

@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/09/27 12:54:42 by liam             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:53:27 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	start(t_datastr *data)
 	data->mov = 0;
 	data->ccol = 0;
 	checkmap(data);
-	savemap(data);
-	savecolormap(data);
+	savemap(data, 0, 0);
+	savecolormap(data, 0, 0);
 	load(data);
 	grassflood(data);
-	
-	if(pathcheck(data, data->y / TILE, data->x / TILE) == 0 || data->ccol != data->col)
+	if (pathcheck(data, data->y / TILE, data->x / TILE) == 0
+		|| data->ccol != data->col)
 	{
-		ft_close(data, "NO VALID PATH");
+		ft_close(data, "NO VALID PATH\n");
 	}
 	else
 		ft_printf("yippy\n");
