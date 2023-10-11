@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:59:51 by liam              #+#    #+#             */
-/*   Updated: 2023/09/27 12:54:19 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 16:12:52 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	move(t_datastr *data, int rx, int ry)
 
 int	on_keypress(int pressedkey, t_datastr *data)
 {
-	if (pressedkey == 'r')
-		start(data);
 	if (pressedkey == 65307)
 		ft_close(data, "ESCAPE KEY PRESSED");
 	if (pressedkey == 'w')
