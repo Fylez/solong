@@ -1,4 +1,4 @@
-SRC = main.c mapinit.c movement.c map_check.c
+SRC = main.c mapinit.c movement.c map_check.c exit.c
 
 LIBFTDIR = include/libftfin/
 
@@ -12,7 +12,7 @@ NAME = so_long
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(SRC) $(LIBFT)
-	$(CC) $(SRC) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFTDIR) -lft -o $(NAME)
+	$(CC) $(SRC) -Lmlx_linux -lmlx_Linux -L/usr/lib -g -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFTDIR) -lft -o $(NAME)
 
 $(LIBFT):
 		$(MAKE) -C $(LIBFTDIR)

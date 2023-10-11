@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fylez <fylez@student.42.fr>                +#+  +:+       +#+         #
+#    By: liam <liam@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 16:03:42 by lzaengel          #+#    #+#              #
-#    Updated: 2023/09/21 15:44:51 by fylez            ###   ########.fr        #
+#    Updated: 2023/10/10 16:52:13 by liam             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := libft.a
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror 
+FLAGS    := -g -Wall -Wextra -Werror 
 
 SRCS        :=			ft_toupper.c \
                           ft_isascii.c \

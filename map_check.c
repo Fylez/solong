@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:37:50 by liam              #+#    #+#             */
-/*   Updated: 2023/09/28 14:53:59 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 15:56:02 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,28 @@ int	casecolourcheck(char c, t_datastr *data)
 
 void	savecolormap(t_datastr *data, int i, int j)
 {
-	char	*line;
-
 	data->fd = open("map/test.ber", O_RDWR);
 	data -> cmap = malloc(data->hei * (sizeof(char *) + 1));
 	if (!data->cmap)
-		return ;
-	while (i < data->hei)
+		ft_close(data, "ERREUR MALLOC");
+	data->line = get_next_line(data->fd);
+	while (data->line)
 	{
-		data -> cmap[i] = malloc(data -> len * sizeof(char));
+		data -> cmap[i] = malloc(data -> len * sizeof(char) + 1);
 		if (!data->cmap[i])
-			return ;
-		line = get_next_line(data->fd);
+			ft_close(data, "ERREUR MALLOC");
 		while (j < data->len)
 		{
-			data->cmap[i][j] = line[j];
+			data->cmap[i][j] = data->line[j];
 			j++;
 		}
-		free(line);
+		data->cmap[i][j] = '\0';
+		free(data->line);
+		data->line = get_next_line(data->fd);
 		j = 0;
 		i++;
 	}
+	free(data->line);
 	data->cmap[i] = '\0';
 	close(data->fd);
 }

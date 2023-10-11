@@ -6,18 +6,11 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/09/28 14:53:27 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 15:53:53 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_close(t_datastr *data, char *reason)
-{
-	ft_printf("%s\n", reason);
-	mlx_destroy_window(data->fenetre, data->new_fenetre);
-	exit(0);
-}
 
 int	load(t_datastr *data)
 {
@@ -43,18 +36,20 @@ void	start(t_datastr *data)
 	data->y = 0;
 	data->mov = 0;
 	data->ccol = 0;
+	load(data);
 	checkmap(data);
 	savemap(data, 0, 0);
 	savecolormap(data, 0, 0);
-	load(data);
 	grassflood(data);
+	if (data->pexist != 1)
+		ft_close(data, "WRONG NUMBER OF PLAYERS");
 	if (pathcheck(data, data->y / TILE, data->x / TILE) == 0
 		|| data->ccol != data->col)
 	{
-		ft_close(data, "NO VALID PATH\n");
+		ft_close(data, "NO VALID PATH");
 	}
 	else
-		ft_printf("yippy\n");
+		ft_printf("GAME STARTED\n");
 	mlx_put_image_to_window(data->fenetre,
 		data->new_fenetre, data->image, data->x, data->y);
 }
@@ -63,6 +58,7 @@ int	main(void)
 {
 	t_datastr	data;
 
+	data.pexist = 0;
 	data.col = 0;
 	data.x = 0;
 	data.y = 0;
@@ -70,7 +66,7 @@ int	main(void)
 	checkmap(&data);
 	data.fenetre = mlx_init();
 	data.new_fenetre = mlx_new_window(data.fenetre,
-			(data.len - 1) * TILE, data.hei * TILE, "test");
+			(data.len - 1) * TILE, data.hei * TILE, "SO_LONG");
 	start(&data);
 	mlx_key_hook(data.new_fenetre, on_keypress, &data);
 	mlx_hook(data.new_fenetre, 17, 1L < 17, ft_close, &data);

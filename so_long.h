@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:49:04 by liam              #+#    #+#             */
-/*   Updated: 2023/09/28 14:53:17 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 15:54:06 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ typedef struct data
 	char	**cmap;
 	int		col;
 	int		ccol;
+	int		pexist;
 	int		mov;
 	int		fd;
+	char	*line;
 }	t_datastr;
 
 void	checkmap(t_datastr *data);
