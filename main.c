@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 15:53:53 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 16:05:11 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	main(void)
 			(data.len - 1) * TILE, data.hei * TILE, "SO_LONG");
 	start(&data);
 	mlx_key_hook(data.new_fenetre, on_keypress, &data);
-	mlx_hook(data.new_fenetre, 17, 1L < 17, ft_close, &data);
+	mlx_hook(data.new_fenetre, 17, 1L < 17, cross, &data);
 	mlx_loop(data.fenetre);
 }

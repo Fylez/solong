@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:37:37 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 15:56:57 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 16:05:04 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,9 @@ int	ft_close(t_datastr *data, char *reason)
 	closewindow(data);
 	free_map(data);
 	exit(0);
+}
+
+int	cross(t_datastr *data)
+{
+	ft_close(data, "CROSS CLICKED");
 }

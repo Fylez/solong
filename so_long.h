@@ -6,7 +6,7 @@
 /*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:49:04 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 15:54:06 by liam             ###   ########.fr       */
+/*   Updated: 2023/10/11 16:04:58 by liam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	start(t_datastr *data);
 void	savecolormap(t_datastr *data, int i, int j);
 int		pathcheck(t_datastr *data, int j, int i);
 void	printmap(char **map);
+int		cross(t_datastr *data);
 
 
 #endif
