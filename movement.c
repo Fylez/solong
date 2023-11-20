@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:59:51 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 16:12:52 by liam             ###   ########.fr       */
+/*   Updated: 2023/11/20 15:41:02 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	casecheck(t_datastr *data, int i, int j)
 	}
 	if (data->map[j][i] == 'E' && data->col == 0)
 	{
-		mlx_destroy_window(data->fenetre, data->new_fenetre);
-		exit(0);
+		ft_close(data, "YOU WON");
 	}
 }
 

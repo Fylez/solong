@@ -19,6 +19,7 @@ $(LIBFT):
 
 all:		${NAME}
 
+re: fclean all
 clean :
 	$(MAKE) -C $(LIBFTDIR) fclean
 fclean: clean
