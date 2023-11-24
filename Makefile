@@ -23,4 +23,4 @@ re: fclean all
 clean :
 	$(MAKE) -C $(LIBFTDIR) fclean
 fclean: clean
-		rm $(NAME)
+		rm -rf $(NAME)

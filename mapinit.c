@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/11/24 15:24:38 by lzaengel         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:50:15 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,26 @@ void	tileread(t_datastr *data, char c, int j, int i)
 	if (c == '1')
 		mlx_put_image_to_window(data->fenetre,
 			data->new_fenetre, data->wall, (j * TILE), (i * TILE));
-	if (c == '0')
+	else if (c == '0')
 		mlx_put_image_to_window(data->fenetre,
 			data->new_fenetre, data->rien, (j * TILE), (i * TILE));
-	if (c == 'C')
+	else if (c == 'C')
 	{
 		mlx_put_image_to_window(data->fenetre,
 			data->new_fenetre, data->collectible, (j * TILE), (i * TILE));
 		data->col++;
 	}
-	if (c == 'P')
+	else if (c == 'P')
 	{
 		data->pexist++;
 		data->x = j * TILE;
 		data->y = i * TILE;
 	}
-	if (c == 'E')
+	else if (c == 'E')
 		mlx_put_image_to_window(data->fenetre,
 			data->new_fenetre, data->end, (j * TILE), (i * TILE));
+	else if (c != '\n')
+		ft_close(data, "INVALID TILE IN THE MAP");
 }
 
 void	grassflood(t_datastr *data)
