@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapinit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 05:54:58 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 15:55:19 by liam             ###   ########.fr       */
+/*   Updated: 2023/11/24 15:24:38 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,7 @@ void	checkxborder(char *line, t_datastr *data)
 	{
 		if (line[i] != '1')
 		{
-			free(line);
-			while (line)
-			{
-				line = get_next_line(data->fd);
-				free(line);
-			}
-			close(data->fd);
-			ft_printf("INVALID MAP\n");
-			exit(0);
+			early_quit(data, line);
 		}
 		i++;
 	}
@@ -45,18 +37,15 @@ void	checkmap(t_datastr *data)
 	if (!line)
 		exit(0);
 	data->len = ft_strlen(line);
+	if (data->len < 2)
+		early_quit(data, line);
 	checkxborder(line, data);
 	while (line)
 	{
 		data->hei = data->hei + 1;
 		if (ft_strlen(line) != data->len
 			|| line[0] != '1' || line[data->len - 2] != '1')
-		{
-			free(line);
-			close(data->fd);
-			ft_printf("INVALID MAP\n");
-			exit(0);
-		}
+			early_quit(data, line);
 		free(line);
 		line = get_next_line(data->fd);
 	}
@@ -67,7 +56,7 @@ void	checkmap(t_datastr *data)
 void	savemap(t_datastr *data, int i, int j)
 {
 	data->fd = open("map/test.ber", O_RDWR);
-	data -> map = malloc(data->hei * (sizeof(char *) + 1));
+	data -> map = malloc((data->hei + 1) * (sizeof(char *)));
 	if (!data->map)
 		ft_close(data, "ERREUR MALLOC");
 	data->line = get_next_line(data->fd);

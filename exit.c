@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:37:37 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 16:05:04 by liam             ###   ########.fr       */
+/*   Updated: 2023/11/24 15:20:55 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	early_quit(t_datastr *data, char *line)
+{
+	free(line);
+	while (line)
+	{
+		line = get_next_line(data->fd);
+		free(line);
+	}
+	close(data->fd);
+	ft_printf("INVALID MAP\n");
+	exit(0);
+}
 
 void	free_map(t_datastr *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:37:50 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 15:56:02 by liam             ###   ########.fr       */
+/*   Updated: 2023/11/24 15:11:41 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	casecolourcheck(char c, t_datastr *data)
 void	savecolormap(t_datastr *data, int i, int j)
 {
 	data->fd = open("map/test.ber", O_RDWR);
-	data -> cmap = malloc(data->hei * (sizeof(char *) + 1));
+	data -> cmap = malloc((data->hei + 1) * (sizeof(char *)));
 	if (!data->cmap)
 		ft_close(data, "ERREUR MALLOC");
 	data->line = get_next_line(data->fd);
