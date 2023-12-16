@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:49:04 by liam              #+#    #+#             */
-/*   Updated: 2023/11/24 15:21:02 by lzaengel         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:26:09 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct data
 	int		mov;
 	int		fd;
 	char	*line;
+	char	*name;
 }	t_datastr;
 
 void	checkmap(t_datastr *data);
@@ -54,6 +55,5 @@ int		pathcheck(t_datastr *data, int j, int i);
 void	printmap(char **map);
 int		cross(t_datastr *data);
 void	early_quit(t_datastr *data, char *line);
-
 
 #endif

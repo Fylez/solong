@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-#include <fcntl.h>
-#include "libft.h"
+# include <fcntl.h>
+# include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100

@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:37:50 by liam              #+#    #+#             */
-/*   Updated: 2023/11/24 15:11:41 by lzaengel         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:21:20 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	casecolourcheck(char c, t_datastr *data)
 
 void	savecolormap(t_datastr *data, int i, int j)
 {
-	data->fd = open("map/test.ber", O_RDWR);
+	data->fd = open(data->name, O_RDWR);
 	data -> cmap = malloc((data->hei + 1) * (sizeof(char *)));
 	if (!data->cmap)
 		ft_close(data, "ERREUR MALLOC");

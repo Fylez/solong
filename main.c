@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 06:01:12 by liam              #+#    #+#             */
-/*   Updated: 2023/10/11 16:05:11 by liam             ###   ########.fr       */
+/*   Updated: 2023/12/16 16:53:49 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	start(t_datastr *data)
 	savemap(data, 0, 0);
 	savecolormap(data, 0, 0);
 	grassflood(data);
+	if (data->col == 0)
+		ft_close(data, "NO COLLECTIBLES");
 	if (data->pexist != 1)
 		ft_close(data, "WRONG NUMBER OF PLAYERS");
 	if (pathcheck(data, data->y / TILE, data->x / TILE) == 0
@@ -54,10 +56,16 @@ void	start(t_datastr *data)
 		data->new_fenetre, data->image, data->x, data->y);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_datastr	data;
 
+	if (argc != 2 || ft_strnstr(argv[1], ".ber", 30) == 0)
+	{
+		ft_printf("INVALID ARGUMENT\n");
+		exit(0);
+	}
+	data.name = argv[1];
 	data.pexist = 0;
 	data.col = 0;
 	data.x = 0;
